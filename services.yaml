@@ -4,10 +4,6 @@ services:
     public: false
     autowire: true
 
-  OxidEsales\GraphQL\Base\Framework\ModuleSetup:
-    class: OxidEsales\GraphQL\Base\Framework\ModuleSetup
-    public: true
-
   OxidEsales\GraphQL\Base\Framework\GraphQLQueryHandler:
     class: OxidEsales\GraphQL\Base\Framework\GraphQLQueryHandler
     public: true
