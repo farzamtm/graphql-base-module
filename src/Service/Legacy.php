@@ -106,6 +106,33 @@ class Legacy
     }
 
     /**
+     * @param string $username
+     * @return User
+     *
+     * @throws InvalidLogin
+     */
+    public function getUserByUsername(string $username): User
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+        $result = $queryBuilder->select('OXID')
+            ->from('oxuser')
+            ->where($queryBuilder->expr()->eq('OXUSERNAME', ':username'))
+            ->setParameter('username', $username)
+            ->execute();
+
+        $id = $result->fetchColumn(0);
+
+        if (!$id) {
+            throw new InvalidLogin('User does not exist.');
+        }
+
+        $user = oxNew(User::class);
+        $user->load($id);
+
+        return $user;
+    }
+
+    /**
      * @throws InvalidLogin
      */
     private function mapUserGroup(?string $dbGroup): string

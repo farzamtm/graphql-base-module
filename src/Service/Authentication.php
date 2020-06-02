@@ -15,6 +15,7 @@ use Lcobucci\JWT\Signer\Hmac\Sha512;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Token;
 use Lcobucci\JWT\ValidationData;
+use OxidEsales\Eshop\Application\Model\User;
 use OxidEsales\GraphQL\Base\Exception\InvalidLogin;
 use OxidEsales\GraphQL\Base\Exception\InvalidToken;
 use OxidEsales\GraphQL\Base\Framework\NullToken;
@@ -148,5 +149,16 @@ class Authentication implements AuthenticationServiceInterface
     private function getSigner(): Signer
     {
         return new Sha512();
+    }
+
+    public function getUser(): ?User
+    {
+        if (!$this->token) {
+            return null;
+        }
+
+        $username = (string) $this->token->getClaim(self::CLAIM_USERNAME);
+
+        return $this->legacyService->getUserByUsername($username);
     }
 }
