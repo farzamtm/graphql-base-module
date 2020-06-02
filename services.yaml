@@ -1,20 +1,5 @@
 services:
-
-    OxidEsales\Eshop\Core\PasswordSaltGenerator1:
-        class: OxidEsales\Eshop\Core\PasswordSaltGenerator
-        public: false
-        autowire: true
-
-    OxidEsales\Eshop\Core\OpenSSLFunctionalityChecker:
-        class: OxidEsales\Eshop\Core\OpenSSLFunctionalityChecker
-        public: false
-        autowire: true
-
-    OxidEsales\GraphQl\Framework\ModuleSetup:
-        class: OxidEsales\GraphQl\Framework\ModuleSetup
-        autowire: true
-        public: true
-
+    
     OxidEsales\GraphQl\Framework\GraphQlQueryHandlerInterface:
         class: OxidEsales\GraphQl\Framework\GraphQlQueryHandler
         arguments:
@@ -26,11 +11,6 @@ services:
             $requestReader: '@OxidEsales\GraphQl\Framework\RequestReaderInterface'
             $responseWriter: '@OxidEsales\GraphQl\Framework\ResponseWriterInterface'
         public: true
-
-    OxidEsales\GraphQl\Framework\ErrorCodeProviderInterface:
-        class: OxidEsales\GraphQl\Framework\ErrorCodeProvider
-        public: false
-        autowire: true
 
     OxidEsales\GraphQl\Framework\RequestReaderInterface:
         class: OxidEsales\GraphQl\Framework\RequestReader
