@@ -1,6 +1,6 @@
 services:
 
-    OxidEsales\Eshop\Core\PasswordSaltGenerator:
+    OxidEsales\Eshop\Core\PasswordSaltGenerator1:
         class: OxidEsales\Eshop\Core\PasswordSaltGenerator
         public: false
         autowire: true
